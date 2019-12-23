@@ -1,0 +1,16 @@
+.header {
+    background: $color2;
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+
+        a {
+            text-decoration: none;
+            color: $color5;
+            font-size: 23px;
+        }
+    }
+}

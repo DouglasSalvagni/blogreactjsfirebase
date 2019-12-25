@@ -85,4 +85,11 @@ section#posts article footer {
   max-width: 400px;
   margin: 50px auto 0;
 }
+
+.form-new-container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 50px auto 0;
+}
 /*# sourceMappingURL=style.css.map */

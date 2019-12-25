@@ -19,6 +19,9 @@ class Firebase {
 
     constructor() {
         app.initializeApp(firebaseConfig);
+
+
+        // Referenciando a database para acessar em outros locais
         this.app = app.database();
     }
 
@@ -26,15 +29,20 @@ class Firebase {
         return app.auth().signInWithEmailAndPassword(email, password);
     } 
 
-    async register(email, password, nome) {
+    logout() {
+        return app.auth().signOut();
+    }
+
+    async register(email, password, name) {
         await app.auth().createUserWithEmailAndPassword(email, password);
 
         const uid = app.auth().currentUser.uid;
 
         return app.database().ref('usuarios').child(uid).set({
-            nome: nome
+            name: name
         })
     }
+
 
     isInitialized() {
         return new Promise(resolve => {
@@ -44,6 +52,16 @@ class Firebase {
 
     getCurrent(){
         return app.auth().currentUser && app.auth().currentUser.email;
+    }
+
+    async getUserName(callback) {
+        if (!app.auth().currentUser) {
+            return null;
+        }
+
+        const uid = app.auth().currentUser.uid;
+
+        await app.database().ref('usuarios').child(uid).once('value').then(callback);
     }
 
 }

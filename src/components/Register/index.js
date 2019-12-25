@@ -23,10 +23,23 @@ class Register extends Component {
 
         e.preventDefault();
 
+        this.onRegister();
+
     }
 
-    onRegister(){
+    onRegister = async () => {
+        
         const { name, email, password } = this.state;
+
+        try {
+
+            await firebase.register(email, password, name);
+            this.props.history.replace('/dashboard');
+        }
+
+        catch(error) {
+            alert(error)
+        }
     }
 
 

@@ -89,7 +89,11 @@ section#posts article footer {
 .form-new-container {
   border: 1px solid #ccc;
   border-radius: 10px;
-  max-width: 400px;
+  max-width: 100%;
   margin: 50px auto 0;
+}
+
+.ckeditor {
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */

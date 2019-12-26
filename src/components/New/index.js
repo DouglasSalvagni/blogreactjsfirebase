@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Link, withRouter } from 'react-router-dom';
-import firebase from '../../firebase'
+import firebase from '../../firebase';
+
+import CKeditor from './ckeditor';
+
 
 class New extends Component {
 
@@ -64,8 +67,7 @@ class New extends Component {
                             onChange={(e) => this.setState({imagem: e.target.value})}/>
 
                         <label>Descriçao:</label>
-                        <textarea className='form-control mb-2' type='text' placeholder='Descrição...' value={this.state.descricao} 
-                            onChange={(e) => this.setState({descricao: e.target.value})}/>
+                        <CKeditor/>
 
                         <button className='btn btn-primary btn-block mb-4' type='submit'>Postar</button>
                     </form>

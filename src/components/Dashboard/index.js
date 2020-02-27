@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import firebase from '../../firebase';
 import { app } from 'firebase';
@@ -7,8 +7,7 @@ const Dashboard = (props) => {
 
     const [name, setName] = useState(localStorage.name);
 
-   const componentDidMount = async () => {
-
+    useEffect(async () => {
         if(!firebase.getCurrent()) {
             props.history.replace('/login');
             return null;
@@ -18,8 +17,7 @@ const Dashboard = (props) => {
             localStorage.name = info.val().name;
             setName(localStorage.name);
         })
-
-    }
+    }, [])
 
     const logout = async () => {
         await firebase.logout()

@@ -1,56 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import firebase from '../../firebase';
+import parse from 'html-react-parser';
 
-class Home extends Component {
+const Home = () => {
 
-  state = {
-    posts: []
-  };
+  const [posts, setPosts] = useState([]);
 
-  componentDidMount(){
+  useEffect(() => {
     firebase.app.ref('posts').once('value', (snapshot) => {
-      let state = this.state;
-      state.posts = [];
+      let arr = [];
       snapshot.forEach((childItem) => {
-        state.posts.push({
+        arr.push({
           key: childItem.key,
           titulo: childItem.val().titulo,
           imagem: childItem.val().imagem,
           descricao: childItem.val().descricao,
           autor: childItem.val().autor
         })
-      })
+      });
 
-      this.state.posts.reverse();
+      posts.reverse();
 
-      this.setState(state);
+      setPosts(arr)
     })
-  }
+  }, [])
 
-  render() {
-      return (
-        <section id='posts' className='container'>
-          <div className='container'>
-            {this.state.posts.map((post) => {
-              return(
-                <article key={post.key}>
-                  <header>
-                    <div className='title'>
-                      <strong>{post.titulo}</strong>
-                      <span>Autor: {post.autor}</span>
-                    </div>
-                  </header>
-                  <img src={post.imagem} alt='Capa do post' />
-                  <footer>
-                    <p>{post.descricao}</p>
-                  </footer>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-      );
-  }
+  return (
+    <section id='posts' className='container'>
+      <div className='container'>
+        {posts && posts.map((post) => {
+          return(
+            <article key={post.key}>
+              <header>
+                <div className='title'>
+                  <strong>{post.titulo}</strong>
+                  <span>Autor: {post.autor}</span>
+                </div>
+              </header>
+              <img src={post.imagem} alt='Capa do post' />
+              <footer>
+                <p>{parse(post.descricao)}</p>
+              </footer>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
 }
 
 export default Home;

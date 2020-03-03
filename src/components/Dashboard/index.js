@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-import React, { useState} from 'react';
-=======
-<<<<<<< HEAD
-import React, { useState} from 'react';
-=======
 import React, { useState, useEffect} from 'react';
->>>>>>> 1e1e23e1b04ac866f752bff371a5fa3130810f05
->>>>>>> 6cd467cc0651c57ada53072eeedc6a1418233a88
 import { Link, withRouter } from 'react-router-dom';
 import firebase from '../../firebase';
 import { app } from 'firebase';
@@ -14,16 +6,6 @@ import { app } from 'firebase';
 const Dashboard = (props) => {
 
     const [name, setName] = useState(localStorage.name);
-<<<<<<< HEAD
-
-   const componentDidMount = async () => {
-=======
-<<<<<<< HEAD
-
-   const componentDidMount = async () => {
-=======
->>>>>>> 1e1e23e1b04ac866f752bff371a5fa3130810f05
->>>>>>> 6cd467cc0651c57ada53072eeedc6a1418233a88
 
     useEffect(async () => {
         if(!firebase.getCurrent()) {
@@ -36,15 +18,7 @@ const Dashboard = (props) => {
             setName(localStorage.name);
         })
     }, [])
-
-<<<<<<< HEAD
-    }
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1e1e23e1b04ac866f752bff371a5fa3130810f05
->>>>>>> 6cd467cc0651c57ada53072eeedc6a1418233a88
+    
     const logout = async () => {
         await firebase.logout()
         .catch((error) => {

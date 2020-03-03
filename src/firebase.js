@@ -12,12 +12,12 @@ let firebaseConfig = {
     appId: "1:841382590506:web:4dedbf6cbc456e60806b53",
     measurementId: "G-KVF4XKDCH6"
   };
+  // Initialize Firebase
 
 
 class Firebase {
 
     constructor() {
-        // Initialize Firebase
         app.initializeApp(firebaseConfig);
 
 

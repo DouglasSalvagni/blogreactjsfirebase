@@ -1,55 +1,70 @@
-import React, { Component} from 'react';
+<<<<<<< HEAD
+import React, { useState} from 'react';
+=======
+<<<<<<< HEAD
+import React, { useState} from 'react';
+=======
+import React, { useState, useEffect} from 'react';
+>>>>>>> 1e1e23e1b04ac866f752bff371a5fa3130810f05
+>>>>>>> 6cd467cc0651c57ada53072eeedc6a1418233a88
 import { Link, withRouter } from 'react-router-dom';
 import firebase from '../../firebase';
 import { app } from 'firebase';
 
-export default class Dashboard extends Component {
+const Dashboard = (props) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: localStorage.name
-        };
+    const [name, setName] = useState(localStorage.name);
+<<<<<<< HEAD
 
-        this.logout = this.logout.bind(this);
+   const componentDidMount = async () => {
+=======
+<<<<<<< HEAD
 
-    }
+   const componentDidMount = async () => {
+=======
+>>>>>>> 1e1e23e1b04ac866f752bff371a5fa3130810f05
+>>>>>>> 6cd467cc0651c57ada53072eeedc6a1418233a88
 
-   async  componentDidMount() {
-
+    useEffect(async () => {
         if(!firebase.getCurrent()) {
-            this.props.history.replace('/login');
+            props.history.replace('/login');
             return null;
         }
 
         firebase.getUserName((info) => {
             localStorage.name = info.val().name;
-            this.setState({name: localStorage.name});
+            setName(localStorage.name);
         })
+    }, [])
 
+<<<<<<< HEAD
     }
 
-    logout = async () => {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 1e1e23e1b04ac866f752bff371a5fa3130810f05
+>>>>>>> 6cd467cc0651c57ada53072eeedc6a1418233a88
+    const logout = async () => {
         await firebase.logout()
         .catch((error) => {
             console.log(error)
         });
 
         localStorage.removeItem('name');
-        this.props.history.push('/');
+        props.history.push('/');
     }
 
-    render() {
-
-        return(
-            <div className='container mt-5'>
-                <div className='text-center'> 
-                    <h1>Olá, {this.state.name}</h1>
-                    <Link to='/dashboard/new'>Novo post</Link>
-                    <p>Logado na conta: {firebase.getCurrent()} </p>
-                    <button onClick={()=> this.logout()}>Logout</button>
-                </div>
+    return(
+        <div className='container mt-5'>
+            <div className='text-center'> 
+                <h1>Olá, {name}</h1>
+                <Link to='/dashboard/new'>Novo post</Link>
+                <p>Logado na conta: {firebase.getCurrent()} </p>
+                <button onClick={()=> logout()}>Logout</button>
             </div>
-        );
-    }
+        </div>
+    );
 }
+
+export default Dashboard;
